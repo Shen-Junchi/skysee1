@@ -1,25 +1,20 @@
-import { NextResponse } from 'next/server';
-import { db } from '@/lib/db/quries'; // Import your database connection
-import { chat } from '@/lib/db/schema'; // Import your schema
-import { getS3Url } from '@/lib/s3'; // Import your S3 utility
+import { db } from "@/lib/db/quries";
+import { chat } from "@/lib/db/schema";
+import { getS3Url } from "@/lib/s3";
 import { auth } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-export async function POST(req: Request) {
+// /api/create-chat
+export async function POST(req: Request, res: Response) {
   const { userId } = await auth();
   if (!userId) {
-    return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
-
   try {
     const body = await req.json();
     const { file_key, file_name } = body;
-
-    if (!file_key || !file_name) {
-      return NextResponse.json({ error: 'file_key and file_name are required' }, { status: 400 });
-    }
-
-    console.log('file_key:', file_key, 'file_name:', file_name);
-
+    console.log(file_key, file_name);
+    ///await loadS3IntoPinecone(file_key);
     const chat_id = await db
       .insert(chat)
       .values({
@@ -31,9 +26,6 @@ export async function POST(req: Request) {
       .returning({
         insertedId: chat.id,
       });
-; // Adjust this if returning syntax differs
-
-    console.log('Inserted chat ID:', chat_id);
 
     return NextResponse.json(
       {
@@ -42,7 +34,10 @@ export async function POST(req: Request) {
       { status: 200 }
     );
   } catch (error) {
-    console.error('Error during POST /api/create-chat:', error);
-    return NextResponse.json({ error: 'internal server error' }, { status: 500 });
+    console.error(error);
+    return NextResponse.json(
+      { error: "internal server error" },
+      { status: 500 }
+    );
   }
 }

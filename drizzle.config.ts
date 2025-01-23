@@ -8,6 +8,7 @@ config({
 export default defineConfig({
   schema: './lib/db/schema.ts',
   dialect: 'postgresql',
+  out: './lib/db/migrations',
   dbCredentials: {
     // biome-ignore lint: Forbidden non-null assertion.
     url: process.env.POSTGRES_URL!,
