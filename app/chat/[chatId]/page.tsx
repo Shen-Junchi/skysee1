@@ -19,7 +19,7 @@ const ChatPage = async (props: Props) => {
 
   const {
     chatId
-  } =await params;
+  } = params;
 
   const { userId } = await auth();
 
