@@ -9,18 +9,23 @@ import React from "react";
 import {getChatsByUserId} from '@/lib/db/quries';
 
 type Props = {
-  params: {
+  params: Promise<{
     chatId: string;
-  };
+  }>;
 };
 
-const ChatPage = async ({ params: { chatId } }: Props) => {
+const ChatPage = async (props: Props) => {
+  const params = await props.params;
+
+  const {
+    chatId
+  } =await params;
 
   const { userId } = await auth();
- 
+
   if (!userId) {
     return redirect("/sign-in");
-  } 
+  }
 
   const _chats = await getChatsByUserId({id:userId});
 
