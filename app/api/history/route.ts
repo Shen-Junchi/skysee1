@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { getChatsByUserId } from '@/lib/db/quries';
 
 export async function GET() {
-  const {userId} = await auth();
+  const { userId }: { userId: string | null } = await auth();
 
   if (!userId) {
     return Response.json('Unauthorized!', { status: 401 });

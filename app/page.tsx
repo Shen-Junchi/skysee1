@@ -10,7 +10,7 @@ import { eq } from "drizzle-orm";
 import { getChatsByUserId } from "@/lib/db/quries";
 
 export default async function Home() {
-  const { userId } = await auth();
+  const { userId }: { userId: string | null } = await auth();
   const isAuth = !!userId;
   let firstChat;
   if (userId) {

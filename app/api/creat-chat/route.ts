@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 
 // /api/create-chat
 export async function POST(req: Request, res: Response) {
-  const { userId } = await auth();
+  const { userId }: { userId: string | null } = await auth();
   if (!userId) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
