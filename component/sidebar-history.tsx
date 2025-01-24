@@ -1,3 +1,5 @@
+'use client';
+
 import type {Chat} from '@/lib/db/schema'
 import useSWR from 'swr';
 import { memo, useEffect, useState } from 'react';
