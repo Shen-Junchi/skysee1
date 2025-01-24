@@ -12,5 +12,5 @@ export default clerkMiddleware( async (auth, request) => {
   });
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)", "/chat/:chatId*"],
+  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)", "/chat/:id*"],
 };

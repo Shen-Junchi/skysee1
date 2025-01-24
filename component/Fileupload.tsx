@@ -21,7 +21,7 @@ const FileUpload = () => {
       file_key: string;
       file_name: string;
     }) => {
-      const response = await axios.post("/api/creat-chat", {
+      const response = await axios.post('/api/creat-chat', {
         file_key,
         file_name,
       });
@@ -51,7 +51,7 @@ const FileUpload = () => {
         mutate(data, {
           onSuccess: ({ chat_id }) => {
             toast.success("Chat created!");
-            router.push("/chat/${chat_id}");
+            router.push(`/chat/${chat_id}`);
           },
           onError: (err) => {
             toast.error("Error creating chat");
