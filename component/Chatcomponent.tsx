@@ -33,7 +33,7 @@ const ChatComponent = ({ chatId }: Props) => {
     stop,
     isLoading
   } = useChat({
-    body: { chatId},
+    body: {chatId},
     initialMessages: [],
     experimental_throttle: 100,
     onFinish: () => {
