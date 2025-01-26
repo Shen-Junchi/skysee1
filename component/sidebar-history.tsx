@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react';
 import type {Chat} from '@/lib/db/schema'
 import useSWR from 'swr';
 import { memo, useEffect, useState } from 'react';
@@ -51,7 +51,7 @@ const PureChatItem = ({
               showOnHover={!isActive}
             >
               <MoreHorizontalIcon />
-              <span className="sr-only">More</span>
+
             </SidebarMenuAction>
           </DropdownMenuTrigger>
 
@@ -161,7 +161,7 @@ const PureChatItem = ({
       <>
         <SidebarGroup>
           <SidebarGroupContent>
-            <>
+            <SidebarMenu>
               {history?.map((chat) => (
                   <ChatItem
                     key={chat.id}
@@ -173,7 +173,7 @@ const PureChatItem = ({
                     }}
                    />
               ))}
-            </>
+            </SidebarMenu>
 
           </SidebarGroupContent>
         </SidebarGroup>

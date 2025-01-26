@@ -1,7 +1,7 @@
 import ChatComponent from "@/component/Chatcomponent";
 import ChatSideBar from "@/component/ChatSideBar";
 import PDFViewer from "@/component/PDFViewer";
-import { chat } from "@/lib/db/schema";
+//import { chat } from "@/lib/db/schema";
 //import { checkSubscription } from "@/lib/subscription";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -40,23 +40,22 @@ const ChatPage = async (props: Props) => {
   //const isPro = await checkSubscription();
 
   return (
-    <div className="flex max-h-screen overflow-scroll">
-     <div className="flex w-full max-h-screen overflow-scroll">
-        {/* chat sidebar */}
-       <div className="flex-[1] max-w-xs">
-        <ChatSideBar userId = {userId}/>
-       </div>
-     {/* pdf viewer */}
-      <div className="max-h-screen p-4 oveflow-scroll flex-[5]">
-       <PDFViewer pdf_url={currentChat?.pdfUrl || ""} 
-       />
-     </div>
-        {/* chat component */}
-        <div className="flex-[3] border-l-4 border-l-slate-200">
-          <ChatComponent chatId={chatId} />
+      <div className="flex h-screen overflow-hidden"> {/* 添加 h-screen 和 overflow-hidden */}
+        <div className="flex w-full h-screen"> {/* 添加 h-screen */}
+          {/* chat sidebar */}
+          <div className="flex-[1] max-w-xs">
+            <ChatSideBar userId = {userId}/>
+          </div>
+          <div className="h-screen p-4 overflow-auto flex-[5]"> {/* 修改为 overflow-auto */}
+            <PDFViewer pdf_url={currentChat?.pdfUrl || ""}/>
+          </div>
+          {/* chat component */}
+          <div className="flex-[3] border-l-4 border-l-slate-200">
+            <ChatComponent chatId={chatId}/>
+          </div>
         </div>
       </div>
-    </div>
+
   );
 };
 

@@ -60,7 +60,7 @@ const ChatComponent = ({ chatId }: Props) => {
       <div className="sticky top-0 inset-x-0 p-2 bg-gray h-fit">
         <h3 className="text-xl font-bold">聊天模式</h3>
       </div>
-
+      {/*<summuraymessage context = {}>*/}
       {/* <MessageList messages={messages} isLoading={isLoading} /> */}
      
       <form className="flex mx-auto px-4 bg-background pb-4 md:pb-6 gap-2 w-full md:max-w-3xl">       

@@ -8,27 +8,26 @@ import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "skysee",
+    title: "Skysee",
 };
 
 export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
+                                       children,
+                                   }: {
+    children: React.ReactNode;
 }) {
-  return (
-    <ClerkProvider>
-     <html lang="en">
-      <body>
-        <Providers>
-          <div className={inter.className}>
-             {children}
-             <Toaster />
-          </div>
-        </Providers>     
-       </body>
-     </html>
-    </ClerkProvider>
- );
-
+    return (
+        <html lang="en">
+         <body className={inter.className}>
+          <ClerkProvider>
+            <main>
+                <Providers>
+                    {children}
+                </Providers>
+                <Toaster />
+            </main>
+          </ClerkProvider>
+         </body>
+        </html>
+    );
 }

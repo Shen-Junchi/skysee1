@@ -8,37 +8,40 @@ import {
 import { Button } from '@/component/ui/button';
 import { PlusIcon } from '@/component/icons';
 import type { User } from 'next-auth';
-import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider} from './ui/tooltip';
 import { SidebarHistory } from './sidebar-history';
 import { useRouter } from 'next/navigation';
 const ChatSideBar = ({ userId }: { userId: string | null }) => {
   const router = useRouter();
-    return(
-     <Sidebar className="group-data-[side=left]:border-r-0">
-        <SidebarHeader>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                type="button"
-                className="p-2 h-fit"
-                onClick={() => {
-                  router.push('/');
-                  router.refresh();
-                } } />
-              <PlusIcon />
-            <Button/>
-          </TooltipTrigger>
-          <TooltipContent align="end">New Chat</TooltipContent>
-        </Tooltip>
-      </SidebarHeader><SidebarContent>
-          <SidebarHistory userId={userId} />
-        </SidebarContent>
-    </Sidebar>
-
-
-    
-    )
+    return (
+        <Sidebar className="group-data-[side=left]:border-r-0">
+            <SidebarHeader>
+                <SidebarMenu>
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button
+                                    variant="ghost"
+                                    type="button"
+                                    className="p-2 h-fit"
+                                    onClick={() => {
+                                        router.push('/');
+                                        router.refresh();
+                                    }}
+                                >
+                                    <PlusIcon />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent align="end">New Chat</TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+                </SidebarMenu>
+            </SidebarHeader>
+            <SidebarContent>
+                <SidebarHistory userId={userId} />
+            </SidebarContent>
+        </Sidebar>
+    );
 
 }
 

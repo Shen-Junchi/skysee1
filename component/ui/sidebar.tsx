@@ -8,6 +8,7 @@ import {
   TooltipTrigger,
 } from '@/component/ui/tooltip';
 
+
 import { VariantProps, cva } from 'class-variance-authority';
 import { Slot } from '@radix-ui/react-slot';
 const sidebarMenuButtonVariants = cva(
@@ -169,11 +170,11 @@ SidebarMenuButton.displayName = 'SidebarMenuButton';
 const SidebarMenuAction = React.forwardRef<
    HTMLButtonElement,
    React.ComponentProps<'button'>&{
-    aschild? : boolean;
+    asChild? : boolean|undefined;
     showOnHover? : boolean;
-   }> (({className, aschild = false, showOnHover = false, ...props}, ref) => {
+   }> (({className, asChild = false, showOnHover = false, ...props}, ref) => {
 
-    const Comp = aschild ? Slot :'button';
+    const Comp = asChild ? Slot :'button';
 
     return (
       <Comp
@@ -195,6 +196,8 @@ const SidebarMenuAction = React.forwardRef<
       />
     );
   });
+SidebarMenuAction.displayName = 'SidebarMenuAction';
+
 
 const SidebarGroup = React.forwardRef<
   HTMLDivElement,
